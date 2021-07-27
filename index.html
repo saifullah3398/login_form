@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Login form </title>
+	<meta charset="utf-8">
+	<meta charset=UTF-8>
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="center-item">
+		<form>
+			<input type="text" placeholder="Enter username" id="user_name">
+			<input type="email" placeholder="Enter email" id="email">
+			<input type="password" placeholder="Enter password" id="password">
+			<button type="button" onclick="login()">Login</button>
+		</form>
+
+	</div>
+</body>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	function login(){
+		var user_name = $('#user_name').val();
+		var email = $('#email').val();
+		var password = $('#password').val();
+		if(user_name){
+			if(email){
+				if(password){
+					$.post("database.php",
+					{
+						user_name: user_name,
+						email: email,
+						password: password
+					},
+					function(data,status){
+					alert("Message: " + data + "\nStatus: " + status);
+					});
+				}else{
+					alert("Enter Your password");
+				}
+			}else{
+				alert("Enter Your email");
+			}
+		}else{
+			alert("Enter Your name");
+		}
+	}
+</script>
+</html>
